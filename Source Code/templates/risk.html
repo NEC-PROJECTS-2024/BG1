@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Page</title>
+    <!-- Add your CSS styles or link external stylesheets here -->
+    <style>
+      .global-container {  
+    height: 100%;  
+    display: flex;  
+    align-items: left;  
+    justify-content: left;  
+
+    
+}  
+form {  
+    background-color: rgb(105, 118, 118);
+    padding-top:20px;  
+    font-size: 20px;  
+    margin-top: 20px;
+    font-weight: bold;
+    padding-left: 0px;
+    background-clip:unset;
+    border-radius: 30px;
+    padding: 20px 30px;
+    width: 550px;
+    color: black;
+    height: 650px;
+    margin-left: 380px;
+    
+}  
+.card-title {   
+font-weight: 300; 
+color: red; 
+ }  
+.btn {  
+    font-size: 18px;  
+    margin-top: 20px;  
+    background-color: #2e3031;
+    color:white;
+    border-radius: 15px;
+    padding:10px 20px;
+    margin-left: 180px;
+    
+}  
+.login-form {   
+    width: 330px;  
+    margin: 20px;  
+    margin-top: 0%;
+} 
+.submit {  
+    text-align: center;  
+    padding: 20px 0 0;  
+
+}  
+.alert {  
+    margin-bottom: -30px;  
+    font-size: 33px;  
+    margin-top: 30px;  
+    color: red;
+    margin-left: 100px;
+    padding-bottom: 50px;
+}  
+html {   
+    height: 100%;   
+}  
+body{   
+    height: 100%; 
+    background-image: url("https://img.freepik.com/free-photo/weathered-blue-page_53876-88602.jpg?w=996&t=st=1708109942~exp=1708110542~hmac=3ae1a147d953208010fb3cd2a9a56533ce70b87d8e27240f523fc545da9f3c41");
+	height: 100%;
+    background-repeat:repeat;
+	background-size:cover;
+	background-position:100%;
+    
+    
+
+
+}  
+h3{
+    color:white;
+    text-align: center;
+    font-size: 30px;
+}
+.form-control
+{
+    /*border: none;
+    padding: 10px 20px;*/
+    border-radius: 15px;
+    width: 500px;
+    height: 30px;
+}
+.danger-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+h3{
+
+    margin-left: 570px;
+    white-space: nowrap; 
+    color: rgb(16, 16, 61);
+   
+  
+}
+
+
+    </style>
+</head>
+
+<body>{% include 'navbar.html' %}
+    <div class="pt-5">
+        <div class="global-container">
+            <div class="card login-form">
+                <div class="card-body">
+                    <div class="card-text">
+                        <h3>Risk Prediction!!!</h3>
+
+                        
+                        <form method="post" action="/risk">
+                            <p>1. Have you or any close family members been diagnosed with breast cancer?<br>
+                                <span class="radio-options">
+                                    <input type="radio" name="q1" value="yes" {% if answers.q1 == 'yes' %}checked{% endif %}> Yes
+                                    <input type="radio" name="q1" value="no" {% if answers.q1 == 'no' %}checked{% endif %}> No
+                                </span>
+                            </p>
+
+                            <p>2. Did you start menstruating before the age of 12?<br>
+                                <span class="radio-options">
+                                    <input type="radio" name="q2" value="yes" {% if answers.q2 == 'yes' %}checked{% endif %}> Yes
+                                    <input type="radio" name="q2" value="no" {% if answers.q2 == 'no' %}checked{% endif %}> No
+                                </span>
+                            </p>
+
+                            <p>3. Is your body mass index (BMI) considered out of normal range?<br>
+                                <span class="radio-options">
+                                    <input type="radio" name="q3" value="yes" {% if answers.q3 == 'yes' %}checked{% endif %}> Yes
+                                    <input type="radio" name="q3" value="no" {% if answers.q3 == 'no' %}checked{% endif %}> No
+                                </span>
+                            </p>
+
+                            <p>4. Do you consume alcohol regularly?<br>
+                                <span class="radio-options">
+                                    <input type="radio" name="q4" value="yes" {% if answers.q4 == 'yes' %}checked{% endif %}> Yes
+                                    <input type="radio" name="q4" value="no" {% if answers.q4 == 'no' %}checked{% endif %}> No
+                                </span>
+                            </p>
+
+                            <p>5. Have you ever used birth control pills?<br>
+                                <span class="radio-options">
+                                    <input type="radio" name="q5" value="yes" {% if answers.q5 == 'yes' %}checked{% endif %}> Yes
+                                    <input type="radio" name="q5" value="no" {% if answers.q5 == 'no' %}checked{% endif %}> No
+                                </span>
+                            </p>
+
+                            <p>6. Have you ever used tobacco or are you currently a smoker?<br>
+                                <span class="radio-options">
+                                    <input type="radio" name="q6" value="yes" {% if answers.q6 == 'yes' %}checked{% endif %}> Yes
+                                    <input type="radio" name="q6" value="no" {% if answers.q6 == 'no' %}checked{% endif %}> No
+                                </span>
+                            </p>
+
+                            <p>7. Have you undergone previous breast biopsies or other breast procedures?<br>
+                                <span class="radio-options">
+                                    <input type="radio" name="q7" value="yes" {% if answers.q7 == 'yes' %}checked{% endif %}> Yes
+                                    <input type="radio" name="q7" value="no" {% if answers.q7 == 'no' %}checked{% endif %}> No
+                                </span>
+                            </p>
+
+                            <p>8. Have you had a history of irregular menstrual cycles or hormonal imbalances?<br>
+                                <span class="radio-options">
+                                    <input type="radio" name="q8" value="yes" {% if answers.q8 == 'yes' %}checked{% endif %}> Yes
+                                    <input type="radio" name="q8" value="no" {% if answers.q8 == 'no' %}checked{% endif %}> No
+                                </span>
+                            </p>
+
+                            <button type="submit">Submit</button>
+                            {% if dangerLevelMessage %}
+                        <div class="alert alert-info" role="alert">
+                            <strong>Danger Level:</strong> {{ dangerLevelMessage }}
+                        </div>
+                        {% endif %}
+                        </form>
+                        <br><br>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
