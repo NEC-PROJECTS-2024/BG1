@@ -1,0 +1,118 @@
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+
+  <style>
+    /* CSS code for button */
+    body {
+     
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    /* CSS code for button */
+    .button_css {
+    color: #494949 !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #ffffff;
+    padding: 20px;
+    border: 4px solid #494949 !important;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+    }
+    
+    .button_css:hover {
+    color: #ffffff !important;
+    background: #f6b93b;
+    border-color: #f6b93b !important;
+    transition: all 0.4s ease 0s;
+    }
+    .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+  </style>
+
+</head>
+
+<body>
+  
+  <div class="navbar">
+    <a href="{{ url_for('default') }}">Home</a>
+    <a href="{{ url_for('risk') }}">Risk Page</a>
+    <a href="{{ url_for('predict') }}">Predict</a>
+</div>
+  <!-- Show Indian AI Hospital banner-->
+  <div>
+    <img src="https://citrusleaf.in/blog/wp-content/uploads/2020/02/machine-learning-cancer-1.jpg" class="w3-border w3-padding" alt="Indian AI Hospital" style="width:100%">
+  </div>
+ 
+ 
+ <div class="login">
+	
+    <!-- Get input for predict the cancer -->
+    <center>
+    <form action="{{ url_for('predict')}}" method="post">
+        <h1>Enter the value of tumor features >>></h1>
+        
+    	<input type="number" name="radius_mean" placeholder="Radius Mean" step="any" required="required" />
+<input type="text" name="texture_mean" placeholder="Texture Mean"step="any" required="required" />
+<input type="text" name="smoothness_mean" placeholder="Smoothness Mean" step="any" required="required" />
+<input type="text" name="compactness_mean" placeholder="Compactness Mean" step="any" required="required" />
+<input type="text" name="concavity_mean" placeholder="Concavity Mean" step="any" required="required" />
+<input type="text" name="symmetry_mean" placeholder="Symmetry Mean" step="any" required="required" />
+<input type="text" name="fractal_dimension_mean" placeholder="Fractal Dimension Mean" step="any" required="required" />
+
+<input type="text" name="radius_se" placeholder="Radius SE" step="any" required="required" />
+<input type="text" name="texture_se" placeholder="Texture SE" step="any" required="required" />
+<input type="text" name="smoothness_se" placeholder="Smoothness SE"step="any" required="required" />
+<input type="text" name="compactness_se" placeholder="Compactness SE"step="any" required="required" />
+<input type="text" name="concavity_se" placeholder="Concavity SE" step="any"required="required" />
+<input type="text" name="concave_points_se" placeholder="Concave Points SE"step="any" required="required" />
+<input type="text" name="symmetry_se" placeholder="Symmetry SE" step="any"required="required" />
+<input type="text" name="fractal_dimension_se" placeholder="Fractal Dimension SE"step="any" required="required" />
+
+<input type="text" name="smoothness_worst" placeholder="Smoothness Worst"step="any" required="required" />
+<input type="text" name="compactness_worst" placeholder="Compactness Worst"step="any" required="required" />
+<input type="text" name="concavity_worst" placeholder="Concavity Worst" step="any"required="required" />
+<input type="text" name="symmetry_worst" placeholder="Symmetry Worst"step="any" required="required" />
+<input type="text" name="fractal_dimension_worst" placeholder="Fractal Dimension Worst" step="any"required="required" />
+        <br>
+        <br>
+        
+        <!-- Show button -->
+        <div class="button_cont" align="center"><a class="button_css">
+            <button type="submit" class="btn btn-primary btn-block btn-large"><strong>Predict Cancer</strong></button></a>
+        </div>
+        
+    </form>
+    </center>
+   
+   <!-- Show predicted output using ML model --> 
+   <div>
+       <center>
+   <h1>{{ prediction_text }}</h1>
+       </center>
+   </div>
+
+ </div>
+
+</body>
+</html>
