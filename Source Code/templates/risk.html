@@ -27,7 +27,7 @@ form {
     padding: 20px 30px;
     width: 550px;
     color: black;
-    height: 650px;
+    height: 700px;
     margin-left: 380px;
     
 }  
@@ -55,14 +55,16 @@ color: red;
     padding: 20px 0 0;  
 
 }  
-.alert {  
-    margin-bottom: -30px;  
-    font-size: 33px;  
-    margin-top: 30px;  
-    color: red;
-    margin-left: 100px;
-    padding-bottom: 50px;
-}  
+
+.s{
+    color: black;
+    background-color: white;
+    width: 100px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 15px;
+    margin-left: 200px;
+} 
 html {   
     height: 100%;   
 }  
@@ -92,9 +94,10 @@ h3{
     height: 30px;
 }
 .danger-message {
-    color: red;
+    color: rgb(113, 2, 2);
     font-weight: bold;
     margin-top: 10px;
+    margin-left: 150px;
 }
 h3{
 
@@ -107,6 +110,36 @@ h3{
 
 
     </style>
+<script>
+    function validateForm() {
+        var answers = document.forms["riskForm"];
+        var dangerLevelMessage = "";
+        var isChecked = false;
+
+        // Check if at least one radio button is checked for each question
+        for (var i = 1; i <= 8; i++) {
+            isChecked = false;
+            var options = answers["q" + i];
+            for (var j = 0; j < options.length; j++) {
+                if (options[j].checked) {
+                    isChecked = true;
+                    break;
+                }
+            }
+            if (!isChecked) {
+                dangerLevelMessage = "Please select an option for question " + i + ".";
+                break;
+            }
+        }
+
+        // Display error message if validation fails
+        if (dangerLevelMessage) {
+            document.getElementById("validationError").innerHTML = dangerLevelMessage;
+            return false;
+        }
+        return true;
+    }
+</script>
 </head>
 
 <body>{% include 'navbar.html' %}
@@ -118,7 +151,7 @@ h3{
                         <h3>Risk Prediction!!!</h3>
 
                         
-                        <form method="post" action="/risk">
+                        <form name="riskForm" method="post" action="/risk" onsubmit="return validateForm()">
                             <p>1. Have you or any close family members been diagnosed with breast cancer?<br>
                                 <span class="radio-options">
                                     <input type="radio" name="q1" value="yes" {% if answers.q1 == 'yes' %}checked{% endif %}> Yes
@@ -175,12 +208,13 @@ h3{
                                 </span>
                             </p>
 
-                            <button type="submit">Submit</button>
-                            {% if dangerLevelMessage %}
-                        <div class="alert alert-info" role="alert">
+                            <button type="submit" class="s">Submit</button><br>
+                            <div id="validationError" style="color: red; margin-left: 100px;"></div>
+                            <div class="danger-message">{% if dangerLevelMessage %}
+                        
                             <strong>Danger Level:</strong> {{ dangerLevelMessage }}
                         </div>
-                        {% endif %}
+                        {% endif %}</div>
                         </form>
                         <br><br>
                         
